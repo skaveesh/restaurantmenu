@@ -11,4 +11,5 @@ import java.util.List;
  */
 
 public interface MenuitemRepository extends CrudRepository<Menuitem,MenuitemPK>{
+    List<Menuitem> findByRestaurantId(int restaurantId);
 }

@@ -1,5 +1,6 @@
 package net.codegen.restaurantmenu.service;
 
+import net.codegen.restaurantmenu.model.Restaurant;
 import net.codegen.restaurantmenu.model.RestaurantTable;
 import net.codegen.restaurantmenu.repository.RestaurantTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,9 @@ public class RestaurantTableService {
         List<RestaurantTable> restaurantTables = new ArrayList<>();
         restaurantTableRepository.findAll().forEach(restaurantTables::add);
         return restaurantTables;
+    }
+
+    public RestaurantTable getTableByTableId(int tableId){
+        return restaurantTableRepository.findByTableId(tableId);
     }
 }
