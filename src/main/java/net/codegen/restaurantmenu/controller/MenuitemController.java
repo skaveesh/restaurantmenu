@@ -18,5 +18,4 @@ import java.util.List;
 public class MenuitemController {
     @Autowired
     MenuitemService menuitemService;
-
 }

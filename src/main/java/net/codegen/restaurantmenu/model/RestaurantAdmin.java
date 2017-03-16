@@ -9,15 +9,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "restaurant_admin")
 public class RestaurantAdmin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "admin_id")
     private int adminId;
+
     @Column(name = "firebase_user_uid")
     private String firebaseUserUid;
+
     private String email;
+
     @Column(name = "admin_fname")
     private String adminFname;
+
     @Column(name = "admin_lname")
     private String adminLname;
 

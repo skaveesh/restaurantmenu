@@ -1,11 +1,6 @@
 package net.codegen.restaurantmenu.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import net.codegen.restaurantmenu.core.MenuitemPK;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -55,13 +50,13 @@ public class Menuitem {
     @JoinColumn(name = "filter_id")
     private Filter filter;
 
-    private int vegetarian;
+    private boolean vegetarian;
 
-    private int availability;
+    private boolean availability;
 
     protected Menuitem(){}
 
-    public Menuitem(Integer restaurantId, String itemNo, String itemName, String itemDesc, Double itemPrice, Double itemTax, String itemIngredients, String itemImgUrl, int noOfDiners, Category category, Filter filter, int vegetarian, int availability) {
+    public Menuitem(Integer restaurantId, String itemNo, String itemName, String itemDesc, Double itemPrice, Double itemTax, String itemIngredients, String itemImgUrl, int noOfDiners, Category category, Filter filter, boolean vegetarian, boolean availability) {
         this.restaurantId = restaurantId;
         this.itemNo = itemNo;
         this.itemName = itemName;
@@ -165,19 +160,19 @@ public class Menuitem {
         this.filter = filter;
     }
 
-    public int getVegitarian() {
+    public boolean isVegetarian() {
         return vegetarian;
     }
 
-    public void setVegitarian(int vegitarian) {
-        this.vegetarian = vegitarian;
+    public void setVegetarian(boolean vegetarian) {
+        this.vegetarian = vegetarian;
     }
 
-    public int getAvailability() {
+    public boolean isAvailability() {
         return availability;
     }
 
-    public void setAvailability(int availability) {
+    public void setAvailability(boolean availability) {
         this.availability = availability;
     }
 }

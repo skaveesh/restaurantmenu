@@ -18,7 +18,7 @@ public class Restaurant {
     @Column(name = "restaurant_id")
     private int restaurantId;
 
-    @Column(name = "restaurant_uname")
+    @Column(name = "restaurant_uname", unique = true)
     private String restaurantUname;
 
     @Column(name = "restaurant_name")
@@ -53,7 +53,7 @@ public class Restaurant {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "disabled_status")
-    private int disabledStatus;
+    private boolean disabledStatus;
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -63,6 +63,16 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Category> categoryList;
 
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<RestaurantTable> restaurantTableList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Staff> staffList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Orders> ordersList;
 
     protected Restaurant() {
     }
@@ -186,11 +196,11 @@ public class Restaurant {
         this.description = description;
     }
 
-    public int getDisabledStatus() {
+    public boolean getDisabledStatus() {
         return disabledStatus;
     }
 
-    public void setDisabledStatus(int disabledStatus) {
+    public void setDisabledStatus(boolean disabledStatus) {
         this.disabledStatus = disabledStatus;
     }
 
@@ -208,5 +218,33 @@ public class Restaurant {
 
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
+    }
+
+    public List<RestaurantTable> getRestaurantTableList() {
+        return restaurantTableList;
+    }
+
+    public void setRestaurantTableList(List<RestaurantTable> restaurantTableList) {
+        this.restaurantTableList = restaurantTableList;
+    }
+
+    public List<Staff> getStaffList() {
+        return staffList;
+    }
+
+    public void setStaffList(List<Staff> staffList) {
+        this.staffList = staffList;
+    }
+
+    public boolean isDisabledStatus() {
+        return disabledStatus;
+    }
+
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 }
