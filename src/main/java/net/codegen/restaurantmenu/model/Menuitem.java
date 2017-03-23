@@ -1,6 +1,7 @@
 package net.codegen.restaurantmenu.model;
 
 import net.codegen.restaurantmenu.core.MenuitemPK;
+import org.json.JSONObject;
 
 import javax.persistence.*;
 
@@ -10,16 +11,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "menuitem")
-@IdClass(value = MenuitemPK.class)
 public class Menuitem {
 
-    @Id
-    @Column(name = "restaurant_id")
-    private Integer restaurantId;
-
-    @Id
-    @Column(name = "item_no")
-    private String itemNo;
+    @EmbeddedId
+    private MenuitemPK menuitemPK;
 
     @Column(name = "item_name")
     private String itemName;
@@ -56,9 +51,8 @@ public class Menuitem {
 
     protected Menuitem(){}
 
-    public Menuitem(Integer restaurantId, String itemNo, String itemName, String itemDesc, Double itemPrice, Double itemTax, String itemIngredients, String itemImgUrl, int noOfDiners, Category category, Filter filter, boolean vegetarian, boolean availability) {
-        this.restaurantId = restaurantId;
-        this.itemNo = itemNo;
+    public Menuitem(MenuitemPK menuitemPK, String itemName, String itemDesc, Double itemPrice, Double itemTax, String itemIngredients, String itemImgUrl, int noOfDiners, Category category, Filter filter, boolean vegetarian, boolean availability) {
+        this.menuitemPK = menuitemPK;
         this.itemName = itemName;
         this.itemDesc = itemDesc;
         this.itemPrice = itemPrice;
@@ -72,20 +66,12 @@ public class Menuitem {
         this.availability = availability;
     }
 
-    public Integer getRestaurantId() {
-        return restaurantId;
+    public MenuitemPK getMenuitemPK() {
+        return menuitemPK;
     }
 
-    public void setRestaurantId(Integer restaurantId) {
-        this.restaurantId = restaurantId;
-    }
-
-    public String getItemNo() {
-        return itemNo;
-    }
-
-    public void setItemNo(String itemNo) {
-        this.itemNo = itemNo;
+    public void setMenuitemPK(MenuitemPK menuitemPK) {
+        this.menuitemPK = menuitemPK;
     }
 
     public String getItemName() {

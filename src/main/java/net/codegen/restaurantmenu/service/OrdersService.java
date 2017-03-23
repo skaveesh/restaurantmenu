@@ -29,4 +29,16 @@ public class OrdersService {
     public Orders getOrderByToken(Restaurant restaurant, RestaurantTable restaurantTable, String token, boolean activeStatus){
         return ordersRepository.findByRestaurantAndRestaurantTableAndTokenAndActiveStatus(restaurant, restaurantTable, token, activeStatus);
     }
+
+    public int getOrderIdByRestaurantAndTableId(Restaurant restaurant, RestaurantTable restaurantTable, boolean activeStatus){
+        return ordersRepository.findByRestaurantAndRestaurantTableAndActiveStatus(restaurant, restaurantTable, activeStatus).getOrderId();
+    }
+
+    public Orders getOrderByRestaurantAndTableIdAndActiveStatus(Restaurant restaurant, int tableId, boolean activeStatus){
+        return ordersRepository.findOrderByRestaurantAndTableIdAndActiveStatus(restaurant, tableId, activeStatus);
+    }
+
+    public int getOrderCountByRestaurantAndTableIdAndActiveStatus(Restaurant restaurant, int tableId, boolean activeStatus){
+        return ordersRepository.findOrderCountByRestaurantAndTableIdAndActiveStatus(restaurant, tableId, activeStatus);
+    }
 }

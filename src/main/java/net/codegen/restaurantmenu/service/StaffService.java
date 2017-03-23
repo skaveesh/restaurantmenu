@@ -18,10 +18,16 @@ public class StaffService {
     @Autowired
     StaffRepository staffRepository;
 
-    public Staff getStaffByUsernameAndPassword(String username, String password){
-        if(BCrypt.checkpw(password, staffRepository.findByUsername(username).getPassword())){
-            return staffRepository.findByUsername(username);
-        }else
+    public Staff getTokenByUsernameAndPassword(String username, String password) {
+        Staff tempStaff = staffRepository.findByUsernameAndSuspendStatus(username, false);
+
+        if (tempStaff != null && BCrypt.checkpw(password, tempStaff.getPassword())) {
+            return tempStaff;
+        } else
             return null;
+    }
+
+    public Staff getStaffByUsername(String username) {
+        return staffRepository.findByUsernameAndSuspendStatus(username, false);
     }
 }

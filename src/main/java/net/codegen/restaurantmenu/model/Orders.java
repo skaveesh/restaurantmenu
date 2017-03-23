@@ -8,6 +8,7 @@ import org.omg.CORBA.ServerRequest;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by samintha on 3/16/2017.
@@ -56,6 +57,10 @@ public class Orders {
     @Column(name = "timestamp_of_order")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Timestamp timestampOfOrder;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItemList;
 
     protected Orders(){}
 
@@ -166,5 +171,13 @@ public class Orders {
 
     public void setTimestampOfOrder(Timestamp timestampOfOrder) {
         this.timestampOfOrder = timestampOfOrder;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 }

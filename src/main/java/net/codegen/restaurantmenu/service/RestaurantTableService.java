@@ -28,4 +28,10 @@ public class RestaurantTableService {
     public RestaurantTable getTableByTableId(int tableId){
         return restaurantTableRepository.findByTableId(tableId);
     }
+
+    public List<RestaurantTable> findAllTablesFromRestaurantId(int restaurantId){
+        List<RestaurantTable> restaurantTables = new ArrayList<>();
+        restaurantTableRepository.findAllTablesFromRestaurantId(restaurantId).forEach(restaurantTables::add);
+        return restaurantTables;
+    }
 }

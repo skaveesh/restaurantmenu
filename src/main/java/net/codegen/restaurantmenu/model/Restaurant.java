@@ -63,6 +63,7 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Category> categoryList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<RestaurantTable> restaurantTableList;
 
@@ -247,4 +248,5 @@ public class Restaurant {
     public void setOrdersList(List<Orders> ordersList) {
         this.ordersList = ordersList;
     }
+
 }

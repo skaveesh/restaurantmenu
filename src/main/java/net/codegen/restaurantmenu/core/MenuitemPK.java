@@ -1,13 +1,20 @@
 package net.codegen.restaurantmenu.core;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
  * Created by samintha on 3/15/2017.
  */
+
+@Embeddable
 public class MenuitemPK implements Serializable {
 
+    @Column(name = "restaurant_id")
     private Integer restaurantId;
+
+    @Column(name = "item_no")
     private String itemNo;
 
     public MenuitemPK(){}
@@ -17,7 +24,7 @@ public class MenuitemPK implements Serializable {
         if(obj instanceof MenuitemPK){
             MenuitemPK menuitemPK = (MenuitemPK) obj;
 
-            if(menuitemPK.getRetaurantId() != (restaurantId)){
+            if(!menuitemPK.getRestaurantId().equals(restaurantId)){
                 return false;
             }
 
@@ -36,12 +43,12 @@ public class MenuitemPK implements Serializable {
         return restaurantId.hashCode() + itemNo.hashCode();
     }
 
-    public int getRetaurantId() {
+    public Integer getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRetaurantId(int retaurantId) {
-        this.restaurantId = retaurantId;
+    public void setRestaurantId(Integer restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getItemNo() {

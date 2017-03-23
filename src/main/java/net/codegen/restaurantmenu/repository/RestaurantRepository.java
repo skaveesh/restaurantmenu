@@ -8,4 +8,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface RestaurantRepository extends CrudRepository<Restaurant,Integer> {
     Restaurant findByRestaurantUname(String restaurantUname);
+    Restaurant findByRestaurantId(int restaurantId);
 }
